@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 app.use(router.routes());
 
 router.get('/', async ctx => {
-    await pool.query(`INSERT INTO anime (name, genre, type, episodes, rating, viewers) VALUES ('name', 'genre', 'type', 1, 1, 1)`);
+    await pool.query(`INSERT INTO anime ("name", "genre", "type", "episodes", "rating", "viewers") VALUES ('name', 'genre', 'type', 1, 1, 1)`);
 
     ctx.body = 'hello docker';
     let query = await pool.query(`SELECT * FROM anime`)

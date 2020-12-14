@@ -18,6 +18,9 @@ services:
     depends_on:
       - postgres
     command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; npm start'
+  nginx:
+    build: ./nginx/
+
 
 
 
