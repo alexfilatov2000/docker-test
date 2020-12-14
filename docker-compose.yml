@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: alex__filatov
+      POSTGRES_DB: olapstage
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+    - '2345:5432'
+    volumes:
+    - ./src/migrations:/docker-entrypoint-initdb.d
+  web:
+    build: .
+    ports:
+    - '8080:8080'
+    depends_on:
+      - postgres
+    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; npm start'
+
+
+
+
+
